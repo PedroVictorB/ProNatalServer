@@ -13,6 +13,6 @@
 		<property name="hibernate.format_sql">false</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		<mapping class="br.ufrn.pronatal.models.Marker"/>
+		<mapping class="br.ufrn.pronatal.models.Problem"/>
     </session-factory>
 </hibernate-configuration>

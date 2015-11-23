@@ -5,10 +5,10 @@ import java.util.List;
 import org.hibernate.Session;
 
 import br.ufrn.pronatal.Util.HibernateUtil;
-import br.ufrn.pronatal.models.Marker;
+import br.ufrn.pronatal.models.Problem;
 
-public class MarkerDAO {
-	public boolean insertMarker(Marker m){
+public class ProblemDAO {
+	public boolean insertProblem(Problem m){
 		try{
 			//Get Session
 	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -25,7 +25,7 @@ public class MarkerDAO {
 		}
 	}
 	
-	public boolean deleteMarker(Marker m){
+	public boolean deleteProblem(Problem m){
 		try{
 			//Get Session
 	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -42,7 +42,7 @@ public class MarkerDAO {
 		}
 	}
 	
-	public boolean updateMarker(Marker m){
+	public boolean updateProblem(Problem m){
 		try{
 			//Get Session
 	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -59,14 +59,14 @@ public class MarkerDAO {
 		}
 	}
 	
-	public boolean readMarker(int id){
+	public boolean readProblem(int id){
 		try{
 			//Get Session
 	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	        //start transaction
 	        session.beginTransaction();
 	        //Save the Model object
-	        session.get(Marker.class, id);
+	        session.get(Problem.class, id);
 	        //Commit transaction
 	        session.getTransaction().commit();
 
@@ -76,14 +76,14 @@ public class MarkerDAO {
 		}
 	}
 	
-	public List<Marker> readAllMarker(){
+	public List<Problem> readAllProblem(){
 		try{
 			//Get Session
 	        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	        //start transaction
 	        session.beginTransaction();
 	        //Save the Model object
-	        List<Marker> l = session.createCriteria(Marker.class).list();
+	        List<Problem> l = session.createCriteria(Problem.class).list();
 	        //Commit transaction
 	        session.getTransaction().commit();
 

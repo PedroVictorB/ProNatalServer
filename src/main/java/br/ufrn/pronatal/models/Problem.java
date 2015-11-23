@@ -12,7 +12,7 @@ import javax.persistence.UniqueConstraint;
  
 @Entity
 @Table(name="marker", uniqueConstraints={@UniqueConstraint(columnNames={"id"})})
-public class Marker {
+public class Problem {
  
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

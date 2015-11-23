@@ -5,21 +5,28 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.pronatal.Util.HibernateUtil;
-import br.ufrn.pronatal.models.Marker;
-import br.ufrn.pronatal.services.MarkerDAO;
+import br.ufrn.pronatal.models.Problem;
+import br.ufrn.pronatal.services.ProblemDAO;
 
 @RestController
 @Component
 @RequestMapping("/marcador")
-public class MarkerController {
+public class ProblemController {
 	
-	private MarkerDAO dao = new MarkerDAO();
+	private ProblemDAO dao = new ProblemDAO();
+	
+	@RequestMapping("/greeting")
+    public String greeting(Model model) {
+		model.addAttribute("app", "ProNatal API");
+        return "teste.html";
+    }
 	
     @RequestMapping("/inserir")
     public String inserir(@RequestParam("titulo") String titulo,
@@ -28,7 +35,7 @@ public class MarkerController {
 			    		@RequestParam("data") Date data,
 			    		@RequestParam("latitude") double latitude,
 			    		@RequestParam("longitude") double longitude) {
-    	Marker m = new Marker();
+    	Problem m = new Problem();
     	m.setTitulo(titulo);
     	m.setDescricao(descricao);
     	m.setTipo(tipo);
@@ -36,7 +43,7 @@ public class MarkerController {
     	m.setLatitude(latitude);
     	m.setLongitude(longitude);
          
-    	if(dao.insertMarker(m)){
+    	if(dao.insertProblem(m)){
     		return ""+m.getId();
     	}
         
@@ -45,9 +52,9 @@ public class MarkerController {
     
     @RequestMapping("/deletar/{id}")
     public String deletar(@PathVariable int id) {
-         Marker m = new Marker();
+         Problem m = new Problem();
          m.setId(id);
-    	if(dao.deleteMarker(m)){
+    	if(dao.deleteProblem(m)){
     		return ""+id;
     	}
         
@@ -56,9 +63,9 @@ public class MarkerController {
     
     @RequestMapping("/marker/{id}")
     public String ler(@PathVariable int id) {
-         Marker m = new Marker();
+         Problem m = new Problem();
          m.setId(id);
-    	if(dao.readMarker(id)){
+    	if(dao.readProblem(id)){
     		return ""+id;
     	}
         
@@ -72,7 +79,7 @@ public class MarkerController {
 			    		@RequestParam("data") Date data,
 			    		@RequestParam("latitude") double latitude,
 			    		@RequestParam("longitude") double longitude) {
-    	Marker m = new Marker();
+    	Problem m = new Problem();
     	m.setTitulo(titulo);
     	m.setDescricao(descricao);
     	m.setTipo(tipo);
@@ -80,7 +87,7 @@ public class MarkerController {
     	m.setLatitude(latitude);
     	m.setLongitude(longitude);
          
-    	if(dao.updateMarker(m)){
+    	if(dao.updateProblem(m)){
     		return ""+m.getId();
     	}
         
@@ -89,10 +96,10 @@ public class MarkerController {
     
     @RequestMapping("/markers")
     public String lista() {
-         List<Marker> l = dao.readAllMarker();
+         List<Problem> l = dao.readAllProblem();
     	if(l != null){
     		String t = "";
-    		for(Marker m : l){
+    		for(Problem m : l){
     			t += ""+m.getId()+"<br/>";
     		}
     		return t;
