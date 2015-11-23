@@ -16,7 +16,7 @@ import br.ufrn.pronatal.Util.HibernateUtil;
 import br.ufrn.pronatal.models.Problem;
 import br.ufrn.pronatal.services.ProblemDAO;
 
-@Component
+@RestController
 @RequestMapping("/marcador") 
 public class ProblemController {
 	

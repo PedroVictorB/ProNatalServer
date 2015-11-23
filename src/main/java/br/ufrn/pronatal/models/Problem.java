@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
  
 @Entity
-@Table(name="marker", uniqueConstraints={@UniqueConstraint(columnNames={"id"})})
+@Table(name="problem", uniqueConstraints={@UniqueConstraint(columnNames={"id"})})
 public class Problem {
  
     @Id
