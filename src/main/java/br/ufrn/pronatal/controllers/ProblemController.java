@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +16,11 @@ import br.ufrn.pronatal.Util.HibernateUtil;
 import br.ufrn.pronatal.models.Problem;
 import br.ufrn.pronatal.services.ProblemDAO;
 
-@RestController
 @Component
-@RequestMapping("/marcador")
+@RequestMapping("/marcador") 
 public class ProblemController {
 	
 	private ProblemDAO dao = new ProblemDAO();
-	
-	@RequestMapping("/greeting")
-    public String greeting(Model model) {
-		model.addAttribute("app", "ProNatal API");
-        return "teste.html";
-    }
 	
     @RequestMapping("/inserir")
     public String inserir(@RequestParam("titulo") String titulo,
